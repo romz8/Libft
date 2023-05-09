@@ -6,7 +6,7 @@
 /*   By: rjobert <rjobert@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:21:44 by rjobert           #+#    #+#             */
-/*   Updated: 2023/05/09 23:19:33 by rjobert          ###   ########.fr       */
+/*   Updated: 2023/05/09 23:31:27 by rjobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,10 @@ static int	number_bsize(int n)
 	return (i);
 }
 
-/*static char	*reverse_array(char *s)
-{
-	int		len;
-	int		i;
-	char	temp;
-
-	len = ft_strlen(s) - 1;
-	i = 0;
-	while (i < len)
-	{
-		temp = s[i];
-		s[i] = s[len];
-		s[len] = temp;
-		i++;
-		len--;
-	}
-	return (s);
-}*/
 static char	*malloc_dynam(long nb, int size, int neg)
 {
 	char	*nbr;
-	
+
 	if (nb != 0)
 		nbr = malloc(size + 1);
 	else
@@ -59,7 +41,7 @@ static char	*malloc_dynam(long nb, int size, int neg)
 		nbr[size] = nb % 10 + '0';
 		nb /= 10;
 	}
-	if (neg ==  1)
+	if (neg == 1)
 		nbr[0] = '-';
 	else
 		nbr[0] = nb % 10 + '0';
@@ -82,8 +64,7 @@ char	*ft_itoa(int n)
 		nb *= -1;
 	}
 	else
-	   size = number_bsize(n);	
-
+		size = number_bsize(n);
 	nbr = malloc_dynam(nb, size, neg);
 	return (nbr);
 }
