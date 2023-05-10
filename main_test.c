@@ -3,6 +3,23 @@
 #include <stdlib.h>
 #include <string.h>
 
+void red()
+{
+	printf("\033[1;33m");
+}
+void green()
+{
+	printf("\033[0;32m");
+}
+void blue()
+{
+	printf("\033[0;34m");
+}
+void reset () 
+{
+	printf("\033[0m");
+}
+
 int main(void)
 {
 	unsigned long x =  0;
@@ -19,25 +36,27 @@ int main(void)
 		x++;
 		}
 
-	printf("------ testing the str functions -------\n");
+	printf("------ testing the strchr and strrchr functions -------\n");
 	printf(" -- test 1 ---\n");
+
 	char *str = "this is the first test sentence of length 44";
 	printf("%s\n \n", str);	
+	
 	printf("ft_strlen yields : %lu\n", ft_strlen(str));
 	printf("ft_strchr for e yields :\n %s \n",ft_strchr(str,'e'));
-	printf("ft_strchr for z yields :\n %s \n",ft_strchr(str,'z'));
-	printf("ft_strrchr for t yields :\n %s \n",ft_strrchr(str,'t'));
-    printf("ft_strrchr for z yields :\n %s \n",ft_strrchr(str,'z'));
-	printf("\nsecond sentence\n");
-	 char *s2 = "Be yourself; everyone else is already taken -Oscar Wilde";
-    printf("%s\n \n", s2);
-    printf("ft_strlen yields : %lu\n", ft_strlen(s2));
-    printf("ft_strchr for W yields :\n %s \n",ft_strchr(s2,'W'));
-    printf("ft_strchr for w yields :\n %s \n",ft_strchr(s2,'z'));
-    printf("ft_strrchr for y yields :\n %s \n",ft_strrchr(s2,'y'));
-    printf("ft_strrchr for z yields :\n %s \n",ft_strrchr(s2,'z'));
+	char *teste = "teste";
+	printf("if 0x40 is address of teste, ft_strchr('teste', 'e') should yield 'este' and pointer 0x41 result is:\n %s \n origina pointer :%p \n returned pointer : %p \n",ft_strchr(teste,'e'), teste, ft_strchr(teste,'e'));
+	printf("if 0x1 is address of 'teste' then ft_strchr('teste', '\\0') should yield 0x6 (5 char after), result is:\n%s\n returned pointer %p\n",ft_strchr("teste",'\0'), ft_strchr("teste",'\0'));
+	printf("if 0x1 is address of 'teste' then strchr('teste', '\\0') should yield 0x6 (5 char after), result is:\n%s\n returned pointer %p\n",strchr("teste",'\0'), strchr("teste",'\0'));
+
+	printf("\n\n\n --- now on strrchr -------\n");
+
+    printf("if 0x40 is address of teste, ft_strrchr('teste', 'e') should yield 'e' and pointer 0x44 result is:\n %s \n origina pointer :%p \n returned pointer : %p \n",ft_strrchr(teste,'e'), teste, ft_strrchr(teste,'e'));
+    printf("if 0x1 is address of 'teste' then ft_strrchr('teste', '\\0') should yield 0x6 (5 char after), result is:\n%s\n returned pointer %p\n",ft_strrchr("teste",'\0'), ft_strrchr("teste",'\0'));
+    printf("if 0x1 is address of 'teste' then strrchr('teste', '\\0') should yield 0x6 (5 char after), result is:\n%s\n returned pointer %p\n",strrchr("teste",'\0'), strrchr("teste",'\0'));
 
 	printf("\n---- test 2 : comparing sentence functions ---\n");
+	char *s2 = "Love yourself, everybody else is already taken - Oscar Wilde";
 	printf("this is comparing the first sentence to itslef : diff is : %i\n",ft_strncmp(str, str,ft_strlen(str)));
 	printf("this is comparing the second  sentence to itslef : diff is : %i\n",ft_strncmp(s2, s2,ft_strlen(s2)));
 	printf("this is comparing the firt & ft_strrchr(s1, t)  sentence to 8 term : diff is : %i\n",ft_strncmp(str, ft_strrchr(str,'t'),8));
@@ -62,7 +81,8 @@ int main(void)
 	printf("we have the value : %s %s %s %s %s %s\n", a, y, z, u, t, w);
 	printf("ft_atoi yields : %i %i %i %i %i %i\n", ft_atoi(a), ft_atoi(y), ft_atoi(z), ft_atoi(u), ft_atoi(t), ft_atoi(w));
 	printf("atoi yields : %i %i %i %i %i %i\n", atoi(a), atoi(y), atoi(z), atoi(u), atoi(t), atoi(w));
-
+	printf("ft_atoi for \\001 2 is :%i \n",ft_atoi("\001 2"));
+	printf("atoi for \\001 2 is :%i \n",atoi("\001 2"));
 
 	printf("\n\n---- testing ft_strnstr NOT GOOOOOOD ------\n");
 	printf("lookin for Oscar in s2 yields for 100 haracters with ft_strnstr: %s\n", ft_strnstr(s2, "Oscar",100)); 
@@ -186,6 +206,14 @@ int main(void)
 	char *dst_ft_strdup = ft_strdup(stnce_strdup);
 	char *dst_strdup = strdup(stnce_strdup);
 	printf("the sentence we compare is :\n %s \n the difference between strdup and ft are : %i\n",stnce_strdup,ft_strncmp(dst_ft_strdup, dst_strdup, ft_strlen(stnce_strdup)));
+	printf("this is the sentence for \"\" input in ft_strdup:%s\n",ft_strdup(""));
+	printf("this is the size received for \"\" input in ft_strdup:%lu\n",ft_strlen(ft_strdup("")));
+	if (ft_strncmp(ft_strdup(""),strdup("") , 3) == 0)
+		printf("ft_strdup and strdup are equal for \"\"\n");
+	else
+		printf("ft_strdup and strdup are NOT equal for \"\" \n");
+	if (ft_strdup("") == NULL)
+		printf("the result is NULL ptr\n");
 	free(dst_ft_strdup);
 	free(dst_strdup);
 	
@@ -264,7 +292,9 @@ int main(void)
             free(matrix3[i]);
         i++;
      }
+	 blue();
 	 printf("---- testing ft_itoa -----\n\n");
+	 reset();
 	 printf("%s\n", ft_itoa(33));
 	 printf("%s\n", ft_itoa(-33));
 	 printf("%s\n", ft_itoa(12345));
@@ -277,7 +307,9 @@ int main(void)
 	 printf("%s\n", ft_itoa(2147483647));
 	 printf("%s\n", ft_itoa(0));
 
+	 blue();
 	 printf("\n\n ---- testing ft_put ----\n\n");
+	 reset();
 	 char *test_put ="this is the sentence to test put functions";
 	 printf("testing ft_puthcar on the first char we have :\n"); 
 	 ft_putchar_fd(test_put[0], 1); 
@@ -286,7 +318,9 @@ int main(void)
 	 printf("\n\n\ntesting ft_putendl  we have ");
 	 ft_putendl_fd(test_put, 1);
 
+	 blue();
 	 printf("\n\n ---- testing ft_putnbr ----\n\n");
+	 reset();
 	 ft_putnbr_fd(33, 1);
 	 printf("\n");
 	 ft_putnbr_fd(-33, 1);
@@ -303,6 +337,37 @@ int main(void)
 	 printf("\n");
      ft_putnbr_fd(0, 1);
      printf("\n");
+	 
+	 red();
+	 printf("\n\n\n\n ------- BONUS : LIST PART ----------\n\n\n");
+	 reset();
+	 
+	 t_list* node_0 = ft_lstnew(0);
+	 t_list* node_min = ft_lstnew(-2147483648);
+	 t_list* node_weird = ft_lstnew("cvxnuudgdhdaubiibcr123456");
+	 
+	 printf("result for 0 is %i\n",node_0->content);
+	 printf("result for min integer is %i\n",node_min->content);
+	 printf("result for weird text  is %i\n",node_weird->content);
+	 
+	 t_list *d_head;
+	 t_list **head;
+	 d_head = node_0;
+	 head = &d_head;
+	 ft_lstadd_front(head, node_min);
+	 ft_lstadd_front(head, node_weird);
+	 
+	 int list_size = ft_lstsize(head);
+	 printf("\n\n the size of the list is:%i\n", list_size);
+	 t_list *last_node = ft_lstlast(head);
+	 printf("\nthe last node of the list is:%i\n", last_node->content);
+	 
+	 t_list *solo = node_0;
+	 int solo_size = ft_lstsize(solo);
+	 printf("\nthe size for just one node is :%i\n", solo_size);
+	 free(node_0);
+	 free(node_min);
+	 free(node_weird);
 
 	 return 0;
 }
