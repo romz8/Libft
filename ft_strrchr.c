@@ -6,7 +6,7 @@
 /*   By: rjobert <rjobert@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:35:11 by rjobert           #+#    #+#             */
-/*   Updated: 2023/05/09 18:27:29 by rjobert          ###   ########.fr       */
+/*   Updated: 2023/05/10 15:15:41 by rjobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ char	*ft_strrchr(const char *str, int c)
 	last_ptr = NULL;
 	while (*str)
 	{
-		if (*str == c)
+		if (*str == (unsigned char) c)
 			last_ptr = (char *) str;
 		str++;
 	}
-	if (*str == c)
+	if (*str == (unsigned char) c)
 		last_ptr = (char *) str;
 	return (last_ptr);
 }

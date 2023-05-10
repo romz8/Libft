@@ -6,7 +6,7 @@
 /*   By: rjobert <rjobert@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 14:44:53 by rjobert           #+#    #+#             */
-/*   Updated: 2023/05/09 16:25:25 by rjobert          ###   ########.fr       */
+/*   Updated: 2023/05/10 18:52:28 by rjobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	len = ft_strlen(s);
 	modif = ft_strdup(s);
-	if (!modif || !f || !len)
+	if (!modif)
 		return (NULL);
+	if (!s || !f)
+		return (modif);
 	i = 0;
 	while (modif[i])
 	{

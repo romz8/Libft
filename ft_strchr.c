@@ -6,7 +6,7 @@
 /*   By: rjobert <rjobert@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:20:36 by rjobert           #+#    #+#             */
-/*   Updated: 2023/05/09 18:25:22 by rjobert          ###   ########.fr       */
+/*   Updated: 2023/05/10 15:08:08 by rjobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,9 @@
 
 char	*ft_strchr(const char *str, int c)
 {
-	while (*str)
-	{
-		if (*str == c)
-			return ((char *) str);
+	while (*str && *str != (unsigned char) c)
 		str++;
-	}
-	if (*str == c)
+	if (*str == (unsigned char) c)
 		return ((char *) str);
 	return (NULL);
 }
