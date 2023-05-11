@@ -20,6 +20,13 @@ void reset ()
 	printf("\033[0m");
 }
 
+void (delete_example)(void * sentence)
+{
+	if (!sentence)
+		return ;
+	free(sentence);
+}
+
 int main(void)
 {
 	unsigned long x =  0;
@@ -346,28 +353,44 @@ int main(void)
 	 t_list* node_min = ft_lstnew(-2147483648);
 	 t_list* node_weird = ft_lstnew("cvxnuudgdhdaubiibcr123456");
 	 
-	 printf("result for 0 is %i\n",node_0->content);
-	 printf("result for min integer is %i\n",node_min->content);
-	 printf("result for weird text  is %i\n",node_weird->content);
+	 printf("result for 0 is %i: p %p\n", (int) node_0->content, node_0);
+	 printf("result for min integer is %i :p %p\n",(int) node_min->content, node_min);
+	 printf("result for weird text  is %i:p %p\n", (int) node_weird->content, node_weird);
 	 
-	 t_list *d_head;
-	 t_list **head;
-	 d_head = node_0;
-	 head = &d_head;
-	 ft_lstadd_front(head, node_min);
-	 ft_lstadd_front(head, node_weird);
+	 t_list *head;
+	 t_list **dble_head;
+	 head = node_0;
+	 dble_head = &head;
+	 ft_lstadd_front(dble_head, node_min);
+	 ft_lstadd_front(dble_head, node_weird);
 	 
 	 int list_size = ft_lstsize(head);
 	 printf("\n\n the size of the list is:%i\n", list_size);
 	 t_list *last_node = ft_lstlast(head);
-	 printf("\nthe last node of the list is:%i\n", last_node->content);
+	 printf("\nthe last node of the list is:%i p: %p\n", (int) last_node->content, last_node);
 	 
-	 t_list *solo = node_0;
+	 //adding another node witht he lst_add_back at the end
+	 t_list *node_8 = ft_lstnew(8);
+	 printf("\nwe created the isolated node of value : %i :p: %p\n", (int) node_8->content, node_8);
+	 ft_lstadd_back(dble_head, node_8);
+	 last_node = ft_lstlast(head);
+	 list_size = ft_lstsize(head);
+	 printf("now that we added node_weird at the end the last node is: %i :p %p \n and the size is :%i\n",(int) last_node->content, last_node, list_size);
+	 t_list *solo = last_node;
 	 int solo_size = ft_lstsize(solo);
 	 printf("\nthe size for just one node is :%i\n", solo_size);
+	 printf(" Applying ft_lstdelone to node_weird yield:\n");
+	 
+	 void (*del_function)(void *);
+	 del_function = &delete_example;
+
+	 ft_lstdelone(node_min, del_function);
+	 printf("result for 0 is %i: p %p\n", (int) node_0->content, node_0);
+     printf("result for min integer is %i :p %p\n",(int) node_min->content, node_min);
+     printf("result for weird text  is %i:p %p\n", (int) node_weird->content, node_weird);
+	 printf("result for weird text  is %i:p %p\n", (int) node_8->content, node_8);
 	 free(node_0);
 	 free(node_min);
-	 free(node_weird);
 
 	 return 0;
 }
