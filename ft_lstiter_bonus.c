@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rjobert <rjobert@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 19:10:13 by rjobert           #+#    #+#             */
-/*   Updated: 2023/05/12 16:15:24 by rjobert          ###   ########.fr       */
+/*   Created: 2023/05/12 14:43:54 by rjobert           #+#    #+#             */
+/*   Updated: 2023/05/12 18:41:22 by rjobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	size_t	i;
-
-	if (!dst && !src)
-		return (0);
-	i = 0;
-	while (i < n)
+	if (!lst || !f)
+		return ;
+	while (lst)
 	{
-		*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
-		i++;
+		if (lst->content)
+			(*f)(lst->content);
+		if (lst->next)
+			lst = lst->next;
+		else
+			break ;
 	}
-	return (dst);
 }

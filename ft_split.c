@@ -6,22 +6,26 @@
 /*   By: rjobert <rjobert@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:46:21 by rjobert           #+#    #+#             */
-/*   Updated: 2023/05/05 15:13:33 by rjobert          ###   ########.fr       */
+/*   Updated: 2023/05/12 20:29:22 by rjobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 #include "libft.h"
 
 static int	ft_wordcount(const char *s, char c)
 {
 	int	count;
+	int	i;
 
 	count = 0;
-	while (*s)
+	i = 0;
+	while (s[i])
 	{
-		if (*s == c)
+		if (i > 0 && s[i] == c && s[i - 1] != c && s[i + 1] != 0)
 			count++;
-		s++;
+		i++;
 	}
 	return (count + 1);
 }
