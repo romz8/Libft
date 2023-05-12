@@ -6,7 +6,7 @@
 #    By: rjobert <rjobert@student.42barcelo>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/02 18:02:44 by rjobert           #+#    #+#              #
-#    Updated: 2023/05/12 20:01:40 by rjobert          ###   ########.fr        #
+#    Updated: 2023/05/12 21:27:35 by rjobert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,11 @@ NAME = libft.a
 
 all : $(NAME)
 
-bonus : $(OBJS_BONUS) $(OBJS)
+bonus : $(OBJS) $(OBJS_BONUS)
 	ar -rcs $(NAME) $(OBJS) $(OBJS_BONUS)
 
 $(NAME): $(OBJS)
 	ar -rcs $(NAME) $(OBJS)
-	ranlib $(NAME)
 
 %.o: %.c
 	$(CC) -c $(CFLAGS)  $< -o $@
