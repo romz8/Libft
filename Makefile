@@ -6,7 +6,7 @@
 #    By: rjobert <rjobert@student.42barcelo>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/02 18:02:44 by rjobert           #+#    #+#              #
-#    Updated: 2023/05/12 21:27:35 by rjobert          ###   ########.fr        #
+#    Updated: 2023/05/14 17:39:34 by rjobert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,4 +48,4 @@ clean:
 
 re: fclean all
 
-.PHONY: fclean clean re all
+.PHONY: fclean clean re all bonus
