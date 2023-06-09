@@ -1,6 +1,6 @@
 #!/bin/bash
 FLAGS = -Wall -Wextra -Werror
-make
+make bonus
 cc ${FLAGS} -c main_test.c -o main_test.o
 
 cc *.o  -o test_program

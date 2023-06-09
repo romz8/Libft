@@ -104,7 +104,9 @@ int main(void)
 	printf("lookin for Mario in 'Super Mario Bros' but  for 7 haracters (stops at 'M') with ft_strnstr: %s\n", ft_strnstr(spm, "Mario", 7));
 	printf("lookin for Mario in 'Super Mario Bros' but  for 7 haracters (stops at 'M') with strnstr: %s\n", strnstr(spm, "Mario", 7));
 
-	printf("--- test memset --\n\n");
+	red();
+	printf("=========== test memset ===================\n\n");
+	reset();
 	char ft_arr[10];
 	char c_arr[10];
 	printf("result for ft_memset and 'A' : %s \n", ft_memset(ft_arr, 'A', 2 * sizeof(char)));
@@ -112,8 +114,15 @@ int main(void)
 
 	int ft_intarr[10];
     int  int_arr[10];
-	ft_memset(ft_intarr, 1, 8 * sizeof(int));
-	memset(int_arr, 1, 8 * sizeof(int));
+	int	mem = 42;
+	int	*ptr_mem = &mem;
+	ft_memset(ft_intarr, 1, 4 * sizeof(int));
+	memset(int_arr, 1, 4 * sizeof(int));
+	ft_memset(ptr_mem,'1', 4);
+	printf("%\n from 42 we go to the following value after 4 bytes of '1' or 49 ascii in ft_mem: %i\n", mem);
+	mem = 42;
+	memset(ptr_mem,'1', 4);
+	printf("%\n from 42 we go to the following value after 4 bytes of '1' or 49 ascii : %i\n");
 	int x1 = 0;
 	while (x1 < 10)
 	{
